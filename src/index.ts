@@ -7,7 +7,6 @@ app.use(express.json());
 
 const port = process.env.PORT || 8080;
 
-// app.use("/authors", authorRouter);
 app.use("/apartments", apartmentRoute);
 
 app.get("/ping", (req, res) => {

@@ -1,23 +1,24 @@
-import { PrismaClient } from "@prisma/client";
-const prismaClient = new PrismaClient().apartments;
+import {
+  getAllApartments,
+  getApartmentById,
+} from "../services/apartmentService";
 
-export const getAllApartments = async (req, res) => {
+export const getAllApartmentsHandler = async (req, res, next) => {
   try {
-    const all = await prismaClient.findMany();
-    res.status(200).json({ data: all });
+    const apartments = await getAllApartments();
+    res.status(200).json({ data: apartments });
   } catch (error) {
     console.log(error);
+    //next(error);
   }
 };
 
-export const createApartment = async (req, res) => {
-  console.log(req, "ali is just checking");
+export const getApartmentByIdHandler = async (req, res, next) => {
   try {
-    const apartmentData = req.body;
-    const apartment = await prismaClient.create({
-      data: apartmentData,
-    });
-    res.status(201).json({ data: apartment });
+    const id = req.params.id;
+    console.log(id, "ali is just checking");
+    const apartment = await getApartmentById(id);
+    res.status(200).json({ data: apartment });
   } catch (error) {
     console.log(error);
   }

@@ -1,12 +1,12 @@
 import { Router } from "express";
 
 import {
-  getAllApartments,
-  createApartment,
+  getAllApartmentsHandler,
+  getApartmentByIdHandler,
 } from "../controllers/apartmentController";
 
 const apartmentRouter = Router();
-apartmentRouter.get("/", getAllApartments);
-apartmentRouter.post("/", createApartment);
+apartmentRouter.get("/", getAllApartmentsHandler);
+apartmentRouter.get("/:id", getApartmentByIdHandler);
 
 export default apartmentRouter;
