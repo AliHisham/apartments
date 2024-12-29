@@ -9,7 +9,7 @@ export const getAllApartmentsHandler = async (req, res, next) => {
     res.status(200).json({ data: apartments });
   } catch (error) {
     console.log(error);
-    //next(error);
+    next(error);
   }
 };
 
@@ -20,6 +20,6 @@ export const getApartmentByIdHandler = async (req, res, next) => {
     const apartment = await getApartmentById(id);
     res.status(200).json({ data: apartment });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };

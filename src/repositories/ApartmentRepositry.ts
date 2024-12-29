@@ -5,4 +5,9 @@ const prismaClient = new PrismaClient().apartments;
 
 export const findAllApartments = async () => prismaClient.findMany();
 
-export const findApartmentById = async (id) => prismaClient.findUnique(id);
+export const findApartmentById = async (id) =>
+  prismaClient.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
